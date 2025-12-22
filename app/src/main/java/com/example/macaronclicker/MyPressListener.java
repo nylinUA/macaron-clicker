@@ -3,11 +3,7 @@ package com.example.macaronclicker;
 import android.view.MotionEvent;
 import android.view.View;
 
-//@deprecated
 public class MyPressListener implements View.OnTouchListener {
-
-
-
 
 
     public boolean onTouch(View v, MotionEvent event){
