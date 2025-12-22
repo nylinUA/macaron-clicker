@@ -33,33 +33,16 @@ public class MainActivity extends AppCompatActivity{
         num_clicks = 0;
         clicks_view = findViewById(R.id.clicks);
         macaron = findViewById(R.id.macaron);
-        //MyPressListener myPressListener = new MyPressListener();
-
-
-
-        macaron.setOnTouchListener(new View.OnTouchListener() {
+        MyPressListener myPressListener = new MyPressListener();
+        macaron.setOnTouchListener(myPressListener);
+        macaron.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        // touch down code
-                        v.setVisibility(View.INVISIBLE);
-                        num_clicks += 1;
-                        clicks_view.setText(String.valueOf(num_clicks));
-                        break;
-
-                    case MotionEvent.ACTION_MOVE:
-                        // touch move code
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                        v.setVisibility(View.VISIBLE);
-                        break;
-                }
-                return true;
+            public void onClick(View v) {
+                num_clicks += 1;
+                clicks_view.setText(String.valueOf(num_clicks));
             }
-
         });
+
 
 
 
@@ -74,4 +57,5 @@ public class MainActivity extends AppCompatActivity{
     protected void onResume() {
         super.onResume();
     }
+
 }

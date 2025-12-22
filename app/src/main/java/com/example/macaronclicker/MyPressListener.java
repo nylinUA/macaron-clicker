@@ -3,13 +3,10 @@ package com.example.macaronclicker;
 import android.view.MotionEvent;
 import android.view.View;
 
+//@deprecated
 public class MyPressListener implements View.OnTouchListener {
 
-    private OnTouchyTouch touchyTouch;
 
-    public interface OnTouchyTouch{
-        void onTouchyTouch();
-    }
 
 
 
@@ -18,7 +15,8 @@ public class MyPressListener implements View.OnTouchListener {
             case MotionEvent.ACTION_DOWN:
                 // touch down code
                 v.setVisibility(View.INVISIBLE);
-                //touchyTouch.onTouchyTouch();
+                v.performClick();
+
                 break;
 
             case MotionEvent.ACTION_MOVE:
