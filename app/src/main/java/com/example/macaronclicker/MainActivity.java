@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity{
     private TextView autoClickerView;
     private int numClicks;
     private Boolean autoClickerOn = false;
+    private ColorThemes colorTheme = ColorThemes.RASPBERRY;
     private Timer timer;
     private TimerTask task;
     private int timerPeriod;
@@ -54,6 +55,15 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        // Long click to change macaron color
+        macaron.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                    
+                return false;
+            }
+        });
+
         timer = new Timer();
 
         autoClickerView = findViewById(R.id.auto_clicker);
@@ -78,7 +88,7 @@ public class MainActivity extends AppCompatActivity{
                     timer.schedule(task, 0, 2000);
                     autoClickerOn = true;
                     autoClickerView.setText("0.33 per second");
-                    autoClickerView.setTextColor(Color.parseColor("#fdacc8"));
+                    autoClickerView.setTextColor(Color.parseColor(colorTheme.get()));
                 }
             }
         });
