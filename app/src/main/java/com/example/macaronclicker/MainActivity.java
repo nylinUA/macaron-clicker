@@ -1,9 +1,12 @@
 package com.example.macaronclicker;
 
 import android.graphics.Color;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -83,9 +86,13 @@ public class MainActivity extends AppCompatActivity{
                 macaronSelect = true;
                 macaron.setVisibility(View.INVISIBLE);
                 selectMacaron1.setVisibility(View.VISIBLE);
+                createAnimation(selectMacaron1, R.anim.fly_up);
                 selectMacaron2.setVisibility(View.VISIBLE);
+                createAnimation(selectMacaron2, R.anim.fly_right);
                 selectMacaron3.setVisibility(View.VISIBLE);
+                createAnimation(selectMacaron3, R.anim.fly_down);
                 selectMacaron4.setVisibility(View.VISIBLE);
+                createAnimation(selectMacaron4, R.anim.fly_left);
                 gray.setVisibility(View.VISIBLE);
                 return true;
             }
@@ -205,6 +212,15 @@ public class MainActivity extends AppCompatActivity{
         macaron.setImageResource(colorTheme.getMacaronPic());
         macaronSmall.setImageResource(colorTheme.getMacaronPicSmall());
         autoClickerView.setTextColor(Color.parseColor(colorTheme.get()));
+
+    }
+
+    private void createAnimation(ImageView view, int animResId) {
+
+        // Load the animation from the specified resource ID
+        Animation animation = AnimationUtils.loadAnimation(MainActivity.this, animResId);
+        // Start the animation on the ImageView
+        view.startAnimation(animation);
 
     }
 
