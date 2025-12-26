@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Macaron Clicker"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/macaron"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/clicks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/macaron"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/macaron_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/macaron"
+        app:layout_constraintEnd_toEndOf="@+id/macaron"
+        app:layout_constraintStart_toStartOf="@+id/macaron"
+        app:layout_constraintTop_toTopOf="@+id/macaron"
+        app:srcCompat="@drawable/macaron_small" />
+
+    <ImageView
+        android:id="@+id/macaron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.501"
+        app:srcCompat="@drawable/macaron" />
+
+    <TextView
+        android:id="@+id/auto_clicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text="AutoClicker"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/macaron_small" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.example.macaronclicker.MacaronSelectFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/macaron_small"
+        app:layout_constraintEnd_toEndOf="@+id/macaron_small"
+        app:layout_constraintStart_toStartOf="@+id/macaron_small"
+        app:layout_constraintTop_toTopOf="@+id/macaron_small" />
+
+    <ImageView
+        android:id="@+id/gray_window"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:alpha="0.6"
+        android:visibility="gone"
+        app:srcCompat="@drawable/gray" />
+
+    <ImageView
+        android:id="@+id/select_macaron_1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="-128dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/macaron"
+        app:layout_constraintEnd_toEndOf="@+id/macaron"
+        app:layout_constraintStart_toStartOf="@+id/macaron"
+        app:srcCompat="@drawable/macaron_small" />
+
+    <ImageView
+        android:id="@+id/select_macaron_3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/macaron"
+        app:layout_constraintStart_toStartOf="@+id/macaron"
+        app:layout_constraintTop_toBottomOf="@+id/macaron"
+        android:layout_marginTop="-128dp"
+        app:srcCompat="@drawable/macaron_small_green" />
+
+    <ImageView
+        android:id="@+id/select_macaron_2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/macaron"
+        app:layout_constraintStart_toEndOf="@+id/macaron"
+        app:layout_constraintTop_toTopOf="@+id/macaron"
+        android:layout_marginLeft="-128dp"
+        app:srcCompat="@drawable/macaron_small_purple" />
+
+    <ImageView
+        android:id="@+id/select_macaron_4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/macaron"
+        app:layout_constraintEnd_toStartOf="@+id/macaron"
+        app:layout_constraintTop_toTopOf="@+id/macaron"
+        android:layout_marginRight="-128dp"
+        app:srcCompat="@drawable/macaron_small_yellow" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

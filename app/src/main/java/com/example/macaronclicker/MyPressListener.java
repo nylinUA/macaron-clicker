@@ -10,8 +10,8 @@ public class MyPressListener implements View.OnTouchListener {
         switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 // touch down code
-                v.setVisibility(View.INVISIBLE);
-                v.performClick();
+                v.setAlpha(0);
+                //v.performClick();
 
                 break;
 
@@ -20,9 +20,10 @@ public class MyPressListener implements View.OnTouchListener {
                 break;
 
             case MotionEvent.ACTION_UP:
-                v.setVisibility(View.VISIBLE);
+                v.setAlpha(1);
+
                 break;
         }
-        return true;
+        return false;
     }
 }

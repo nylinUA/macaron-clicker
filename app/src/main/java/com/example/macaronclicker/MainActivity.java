@@ -20,14 +20,22 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity{
 
     private ImageView macaron;
+    private ImageView macaronSmall;
     private TextView clicksView;
     private TextView autoClickerView;
     private int numClicks;
-    private Boolean autoClickerOn = false;
+    private boolean autoClickerOn = false;
     private ColorThemes colorTheme = ColorThemes.RASPBERRY;
     private Timer timer;
     private TimerTask task;
     private int timerPeriod;
+    private boolean macaronSelect = false;
+
+    private ImageView selectMacaron1;
+    private ImageView selectMacaron2;
+    private ImageView selectMacaron3;
+    private ImageView selectMacaron4;
+    private ImageView gray;
 
 
     @Override
@@ -35,7 +43,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_2);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -46,8 +54,19 @@ public class MainActivity extends AppCompatActivity{
         clicksView = findViewById(R.id.clicks);
 
         macaron = findViewById(R.id.macaron);
+        macaronSmall = findViewById(R.id.macaron_small);
+        selectMacaron1 = findViewById(R.id.select_macaron_1);
+        selectMacaron2 = findViewById(R.id.select_macaron_2);
+        selectMacaron3 = findViewById(R.id.select_macaron_3);
+        selectMacaron4 = findViewById(R.id.select_macaron_4);
+        gray = findViewById(R.id.gray_window);
+
+
+        //"Animation" for macaron to get smaller on touch
         MyPressListener myPressListener = new MyPressListener();
         macaron.setOnTouchListener(myPressListener);
+
+        //increment macaron count on click
         macaron.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,18 +74,76 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+
+
         // Long click to change macaron color
         macaron.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                    
-                return false;
+                macaronSelect = true;
+                macaron.setVisibility(View.INVISIBLE);
+                selectMacaron1.setVisibility(View.VISIBLE);
+                selectMacaron2.setVisibility(View.VISIBLE);
+                selectMacaron3.setVisibility(View.VISIBLE);
+                selectMacaron4.setVisibility(View.VISIBLE);
+                gray.setVisibility(View.VISIBLE);
+                return true;
             }
         });
 
+        selectMacaron1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (macaronSelect) {
+                    colorTheme = ColorThemes.RASPBERRY;
+                    changeMacaronColour();
+                    hideSelectMacarons();
+                }
+            }
+        });
+
+        selectMacaron2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (macaronSelect) {
+                    colorTheme = ColorThemes.UBE;
+                    changeMacaronColour();
+                    hideSelectMacarons();
+                }
+            }
+        });
+
+        selectMacaron3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (macaronSelect) {
+                    colorTheme = ColorThemes.PISTACHIO;
+                    changeMacaronColour();
+                    hideSelectMacarons();
+                }
+            }
+        });
+
+        selectMacaron4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (macaronSelect) {
+                    colorTheme = ColorThemes.LEMON;
+                    changeMacaronColour();
+                    hideSelectMacarons();
+                }
+            }
+        });
+
+
+
+
+
+        //Auto Clicker
         timer = new Timer();
 
         autoClickerView = findViewById(R.id.auto_clicker);
+        autoClickerView.setTextColor(Color.parseColor(colorTheme.get()));
         autoClickerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +152,6 @@ public class MainActivity extends AppCompatActivity{
                     timer.cancel();
                     autoClickerOn = false;
                     autoClickerView.setText("AutoClicker");
-                    autoClickerView.setTextColor(Color.parseColor("#1f2326"));
                 }
                 else{
                     timer = new Timer();
@@ -93,13 +169,16 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-
-
-
-
-
-
     }
+
+
+
+
+
+
+
+
+
 
     public void incrementClickCount(){
         runOnUiThread(new Runnable() {
@@ -109,6 +188,23 @@ public class MainActivity extends AppCompatActivity{
                 clicksView.setText(String.valueOf(numClicks));
             }
         });
+
+    }
+
+
+    public void hideSelectMacarons(){
+        selectMacaron1.setVisibility(View.INVISIBLE);
+        selectMacaron2.setVisibility(View.INVISIBLE);
+        selectMacaron3.setVisibility(View.INVISIBLE);
+        selectMacaron4.setVisibility(View.INVISIBLE);
+        macaron.setVisibility(View.VISIBLE);
+        gray.setVisibility(View.GONE);
+}
+
+    public void changeMacaronColour(){
+        macaron.setImageResource(colorTheme.getMacaronPic());
+        macaronSmall.setImageResource(colorTheme.getMacaronPicSmall());
+        autoClickerView.setTextColor(Color.parseColor(colorTheme.get()));
 
     }
 
